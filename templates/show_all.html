@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>ScentJourney Dublin Airport </title>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <style>
+         /* General page styling */
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+         }
+
+         /* Header styling */
+         .header {
+            background: #333;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+         }
+
+         .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+         }
+
+         /* Table styling */
+         .perfume-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         }
+
+         .perfume-table th,
+         .perfume-table td {
+            padding: 12px 15px;
+            text-align: center;
+         }
+
+         .perfume-table th {
+            background-color: #005f73;
+            color: white;
+            font-weight: bold;
+         }
+
+         .perfume-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+         }
+
+         /* Button styling */
+         .action-button {
+            padding: 8px 12px;
+            margin: 3px;
+            font-size: 0.9em;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+         }
+
+         .action-button:hover {
+            opacity: 0.9;
+         }
+
+         .delete-button {
+            background-color: #e74c3c;
+         }
+
+         .update-button {
+            background-color: #3498db;
+         }
+
+         .increment-button {
+            background-color: #2ecc71;
+         }
+
+         /* Back button styling */
+         .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #005f73;
+            color: white;
+            font-size: 1em;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+         }
+
+         .back-button:hover {
+            background-color: #0a9396;
+         }
+      </style>
+   </head>
+   <body>
+      <!-- Header Section -->
+      <div class="header">
+         <h1>ScentJourney Dublin Airport</h1>
+      </div>
+<div class="w3-center w3-margin-bottom">
+    <form action="{{ url_for('show_all') }}" method="get" class="w3-container w3-margin-bottom">
+        <label for="climate" class="w3-text-dark-grey"><b>Filter by Climate</b></label>
+        <select name="climate" id="climate" class="w3-select w3-border w3-margin-bottom" style="max-width: 300px;">
+            <option value="" selected>All Climates</option>
+            <option value="Summer">Summer</option>
+            <option value="Winter">Winter</option>
+            <option value="Spring">Spring</option>
+            <option value="Autumn">Autumn</option>
+            <option value="All Seasons">All Seasons</option>
+        </select>
+        <button type="submit" class="w3-button w3-dark-grey w3-hover-grey w3-round">Filter</button>
+    </form>
+</div>
+
+      <!-- Main Table Section -->
+      <div class="w3-container">
+       <table class="perfume-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Scent</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Travel Size</th>
+            <th>Climate</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for perfume in perfumes %}
+        <tr>
+            <td>{{ perfume.name }}</td>
+            <td>{{ perfume.brand }}</td>
+            <td>{{ perfume.scent }}</td>
+            <td>${{ perfume.price }}</td>
+            <td>{{ perfume.quantity }}</td>
+            <td>{{ 'Yes' if perfume.travel_size else 'No' }}</td>
+            <td>{{ perfume.climate }}</td> <!-- Display Climate -->
+            <td>
+                <!-- Action Buttons -->
+                <form action="{{ url_for('delete_perfume', perfume_id=perfume.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="action-button delete-button">Delete</button>
+                </form>
+                <a href="{{ url_for('update2', perfume_id=perfume.id) }}" class="action-button update-button">Update</a>
+                <a href="{{ url_for('increment_quantity', perfume_id=perfume.id) }}" class="action-button increment-button">Increment Quantity</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+         <!-- Back to Main Menu Button -->
+         <div class="w3-center">
+            <a href="{{ url_for('opening2') }}" class="back-button">Back to Main Menu</a>
+         </div>
+      </div>
+   </body>
+</html>

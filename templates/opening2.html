@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>ScentJourney Dublin Airport</title>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <style>
+         * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+         }
+
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+         }
+
+         .header-section {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 4px solid #005f73;
+         }
+
+         .header-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+         }
+
+         .header-section p {
+            font-size: 1.1em;
+            color: #a9a9a9;
+         }
+
+         .option-card {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+         }
+
+         .option-card .card-header {
+            background: #005f73;
+            color: white;
+            padding: 15px;
+            text-align: center;
+         }
+
+         .option-card h2 {
+            margin: 0;
+            font-size: 1.5em;
+         }
+
+         .option-container {
+            padding: 25px 30px;
+         }
+
+         .option-container h3 {
+            font-weight: 600;
+            color: #333;
+            margin-top: 20px;
+            font-size: 1.2em;
+         }
+
+         .w3-button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white !important;
+            background-color: #005f73 !important;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+         }
+
+         .w3-button:hover {
+            background-color: #0a9396 !important;
+         }
+
+         form label {
+            font-weight: 600;
+            color: #555;
+         }
+
+         form input[type="text"] {
+            margin-top: 8px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 15px;
+         }
+
+         form input[type="text"]:focus {
+            border-color: #005f73;
+            outline: none;
+         }
+
+         /* Footer Section */
+         .footer-section {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #777;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="header-section">
+         <h1>ScentJourney Dublin Airport</h1>
+         <p>Stock Manager</p>
+      </div>
+
+      <div class="w3-container">
+         <div class="option-card">
+            <div class="card-header">
+               <h2>Options</h2>
+            </div>
+            <div class="option-container">
+               <h3>List All Perfumes</h3>
+               <a href="{{ url_for('show_all') }}" class="w3-button">View Perfumes Collection</a>
+
+               <h3>Add a Perfume</h3>
+               <a href="{{ url_for('new') }}" class="w3-button">Add New Perfume</a>
+
+               <h3>Add Initial Perfume Data</h3>
+               <a href="{{ url_for('initial_table_data') }}" class="w3-button">Add Sample Perfumes</a>
+
+               <h3>Search Options</h3>
+               <form action="{{ url_for('opening2') }}" method="post">
+                  <label for="brand">Brand</label>
+                  <input type="text" name="brand" placeholder="Enter Brand" class="w3-input" />
+                  <button type="submit" name="Search_By_Brand" class="w3-button" style="margin-top: 10px;">Search By Brand</button>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <div class="footer-section">
+         <p>&copy; 2024 ScentJourneyPerfumes. All rights reserved.</p>
+      </div>
+   </body>
+</html>

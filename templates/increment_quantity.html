@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Increment Perfume Quantity</title>
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   </head>
+   <body class="w3-light-grey">
+      <!-- Main Container -->
+      <div class="w3-container w3-card-4 w3-white w3-padding-large w3-round-large" style="max-width: 500px; margin: 50px auto;">
+         <h1 class="w3-center w3-text-dark-grey">Increment Perfume Quantity</h1>
+         <h2 class="w3-center w3-text-grey">{{ perfume.name }}</h2>
+         <p class="w3-center w3-text-grey">Enter the amount to add to the quantity</p>
+         <hr class="w3-border-grey">
+
+         <!-- Increment Quantity Form -->
+         <form action="{{ url_for('increment_quantity', perfume_id=perfume.id) }}" method="post" class="w3-container">
+            <label for="increment_amount" class="w3-text-dark-grey"><b>Increment Amount</b></label>
+            <input type="number" name="increment_amount" id="increment_amount" placeholder="Enter amount to add" value="1"
+                   class="w3-input w3-border w3-round w3-margin-bottom" required>
+
+            <button type="submit" class="w3-button w3-dark-grey w3-hover-grey w3-round w3-block w3-padding-large">Increment Quantity</button>
+         </form>
+
+         <!-- Return Button -->
+         <div class="w3-center w3-margin-top">
+            <a href="{{ url_for('show_all') }}" class="w3-button w3-dark-grey w3-hover-grey w3-round w3-padding-large">Return to Perfume List</a>
+         </div>
+      </div>
+   </body>
+</html>
